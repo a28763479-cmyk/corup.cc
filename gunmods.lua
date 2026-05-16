@@ -3352,6 +3352,8 @@ local function onConfigChanged()
     refreshTrackedConfigs()
 end
 
+task.wait()
+
 Toggles.gm_instant:OnChanged(function()
     Settings.InstantBullet = Toggles.gm_instant.Value
     installProjectileHook()
