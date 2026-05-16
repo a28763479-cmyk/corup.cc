@@ -1,4 +1,4 @@
-repo = "https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/"
+repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 
 Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
