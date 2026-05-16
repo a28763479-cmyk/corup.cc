@@ -3323,25 +3323,25 @@ Tabs = {
 
 GunModsGroup = Tabs.Main:AddLeftGroupbox("Gun Mods")
 
-GunModsGroup:AddToggle("gm_instant", { Text = "Instant Bullet", Default = Settings.InstantBullet })
-GunModsGroup:AddToggle("gm_hitman_briefcase", {
+local instbullet = GunModsGroup:AddToggle("gm_instant", { Text = "Instant Bullet", Default = Settings.InstantBullet })
+local hitmanb = GunModsGroup:AddToggle("gm_hitman_briefcase", {
     Text = "Hitman Briefcase",
     Default = Settings.HitmanBriefcaseEnabled,
     Risky = true,
 })
-GunModsGroup:AddToggle("gm_instant_reload", { Text = "Instant Reload", Default = Settings.InstantReload })
-GunModsGroup:AddToggle("gm_mod_recoil", { Text = "Modify Recoil", Default = Settings.ModRecoil })
-GunModsGroup:AddSlider("gm_recoil_amount", { Text = "Recoil Amount", Default = Settings.RecoilAmount, Min = 0, Max = 100, Rounding = 0, Suffix = "%" })
-GunModsGroup:AddToggle("gm_mod_spread", { Text = "Modify Spread", Default = Settings.ModSpread })
-GunModsGroup:AddSlider("gm_spread_amount", { Text = "Spread Amount", Default = Settings.SpreadAmount, Min = 0, Max = 100, Rounding = 0, Suffix = "%" })
-GunModsGroup:AddToggle("gm_mod_equip", { Text = "Equip Speed", Default = Settings.ModEquip })
-GunModsGroup:AddSlider("gm_equip_speed", { Text = "Equip Multiplier", Default = Settings.EquipSpeed, Min = 0, Max = 2, Rounding = 2, Suffix = "x" })
-GunModsGroup:AddToggle("gm_mod_aim", { Text = "Aim Speed", Default = Settings.ModAim })
-GunModsGroup:AddSlider("gm_aim_speed", { Text = "Aim Multiplier", Default = Settings.AimSpeed, Min = 0, Max = 2, Rounding = 2, Suffix = "x" })
-GunModsGroup:AddToggle("gm_infinite_range", { Text = "Infinite Range", Default = Settings.InfiniteRange })
-GunModsGroup:AddToggle("gm_no_slowdown", { Text = "No Slowdown", Default = Settings.NoSlowdown })
-GunModsGroup:AddToggle("gm_instant_charge", { Text = "Instant Charge", Default = Settings.InstantCharge })
-GunModsGroup:AddToggle("gm_rapid_fire", { Text = "Rapid Fire", Default = Settings.RapidFire })
+local instantr = GunModsGroup:AddToggle("gm_instant_reload", { Text = "Instant Reload", Default = Settings.InstantReload })
+local modrecoil = GunModsGroup:AddToggle("gm_mod_recoil", { Text = "Modify Recoil", Default = Settings.ModRecoil })
+local recoilam = GunModsGroup:AddSlider("gm_recoil_amount", { Text = "Recoil Amount", Default = Settings.RecoilAmount, Min = 0, Max = 100, Rounding = 0, Suffix = "%" })
+local modspread = GunModsGroup:AddToggle("gm_mod_spread", { Text = "Modify Spread", Default = Settings.ModSpread })
+local spreadam = GunModsGroup:AddSlider("gm_spread_amount", { Text = "Spread Amount", Default = Settings.SpreadAmount, Min = 0, Max = 100, Rounding = 0, Suffix = "%" })
+local equipsp = GunModsGroup:AddToggle("gm_mod_equip", { Text = "Equip Speed", Default = Settings.ModEquip })
+local equipmu = GunModsGroup:AddSlider("gm_equip_speed", { Text = "Equip Multiplier", Default = Settings.EquipSpeed, Min = 0, Max = 2, Rounding = 2, Suffix = "x" })
+local aimsp = GunModsGroup:AddToggle("gm_mod_aim", { Text = "Aim Speed", Default = Settings.ModAim })
+local aimmu = GunModsGroup:AddSlider("gm_aim_speed", { Text = "Aim Multiplier", Default = Settings.AimSpeed, Min = 0, Max = 2, Rounding = 2, Suffix = "x" })
+local infrange = GunModsGroup:AddToggle("gm_infinite_range", { Text = "Infinite Range", Default = Settings.InfiniteRange })
+local noslow = GunModsGroup:AddToggle("gm_no_slowdown", { Text = "No Slowdown", Default = Settings.NoSlowdown })
+local instcharge = GunModsGroup:AddToggle("gm_instant_charge", { Text = "Instant Charge", Default = Settings.InstantCharge })
+local rapidfire = GunModsGroup:AddToggle("gm_rapid_fire", { Text = "Rapid Fire", Default = Settings.RapidFire })
 SelfTracerToggle = GunModsGroup:AddToggle("gm_tracers_self", { Text = "LocalPlayer Tracers", Default = Settings.TracersSelf })
 SelfTracerToggle:AddColorPicker("gm_tracer_self_color", { Default = Settings.TracerSelfColor, Title = "My Tracer Color" })
 OthersTracerToggle = GunModsGroup:AddToggle("gm_tracers_others", { Text = "Players Tracers", Default = Settings.TracersOthers })
@@ -3354,7 +3354,7 @@ end
 
 task.wait()
 
-Toggles.gm_instant:OnChanged(function()
+instbullet:OnChanged(function()
     Settings.InstantBullet = Toggles.gm_instant.Value
     installProjectileHook()
     ensureProjectileHookRetryLoop()
@@ -3362,7 +3362,7 @@ Toggles.gm_instant:OnChanged(function()
     onConfigChanged()
 end)
 
-Toggles.gm_hitman_briefcase:OnChanged(function()
+hitmanb:OnChanged(function()
     Settings.HitmanBriefcaseEnabled = Toggles.gm_hitman_briefcase.Value
     syncHitmanWallbangState(shouldEnableHitmanWallbang())
     if not Settings.HitmanBriefcaseEnabled and type(hitmanClearProjectiles) == "function" then
@@ -3370,7 +3370,7 @@ Toggles.gm_hitman_briefcase:OnChanged(function()
     end
 end)
 
-Toggles.gm_instant_reload:OnChanged(function()
+instantr:OnChanged(function()
     Settings.InstantReload = Toggles.gm_instant_reload.Value
     if Settings.InstantReload then
         task.spawn(handleInstantReloadFromSource)
@@ -3378,67 +3378,67 @@ Toggles.gm_instant_reload:OnChanged(function()
 end)
 
 
-Toggles.gm_mod_recoil:OnChanged(function()
+modrecoil:OnChanged(function()
     Settings.ModRecoil = Toggles.gm_mod_recoil.Value
     onConfigChanged()
 end)
 
-Options.gm_recoil_amount:OnChanged(function()
+recoilam:OnChanged(function()
     Settings.RecoilAmount = Options.gm_recoil_amount.Value
     onConfigChanged()
 end)
 
-Toggles.gm_mod_spread:OnChanged(function()
+modspread:OnChanged(function()
     Settings.ModSpread = Toggles.gm_mod_spread.Value
     onConfigChanged()
 end)
 
-Options.gm_spread_amount:OnChanged(function()
+spreadam:OnChanged(function()
     Settings.SpreadAmount = Options.gm_spread_amount.Value
     onConfigChanged()
 end)
 
-Toggles.gm_mod_equip:OnChanged(function()
+equipsp:OnChanged(function()
     Settings.ModEquip = Toggles.gm_mod_equip.Value
     onConfigChanged()
 end)
 
-Options.gm_equip_speed:OnChanged(function()
+equipmu:OnChanged(function()
     Settings.EquipSpeed = Options.gm_equip_speed.Value
     onConfigChanged()
 end)
 
-Toggles.gm_mod_aim:OnChanged(function()
+aimsp:OnChanged(function()
     Settings.ModAim = Toggles.gm_mod_aim.Value
     onConfigChanged()
 end)
 
-Options.gm_aim_speed:OnChanged(function()
+aimmu:OnChanged(function()
     Settings.AimSpeed = Options.gm_aim_speed.Value
     onConfigChanged()
 end)
 
-Toggles.gm_infinite_range:OnChanged(function()
+infrange:OnChanged(function()
     Settings.InfiniteRange = Toggles.gm_infinite_range.Value
     onConfigChanged()
 end)
 
-Toggles.gm_no_slowdown:OnChanged(function()
+noslow:OnChanged(function()
     Settings.NoSlowdown = Toggles.gm_no_slowdown.Value
     onConfigChanged()
 end)
 
-Toggles.gm_instant_charge:OnChanged(function()
+instcharge:OnChanged(function()
     Settings.InstantCharge = Toggles.gm_instant_charge.Value
     onConfigChanged()
 end)
 
-Toggles.gm_rapid_fire:OnChanged(function()
+rapidfire:OnChanged(function()
     Settings.RapidFire = Toggles.gm_rapid_fire.Value
     onConfigChanged()
 end)
 
-Toggles.gm_tracers_self:OnChanged(function()
+SelfTracerToggle:OnChanged(function()
     Settings.TracersSelf = Toggles.gm_tracers_self.Value
     if Settings.TracersSelf or Settings.TracersOthers then
         installVisualizeTracerHook()
@@ -3446,7 +3446,7 @@ Toggles.gm_tracers_self:OnChanged(function()
     end
 end)
 
-Toggles.gm_tracers_others:OnChanged(function()
+OthersTracerToggle:OnChanged(function()
     Settings.TracersOthers = Toggles.gm_tracers_others.Value
     if Settings.TracersSelf or Settings.TracersOthers then
         installVisualizeTracerHook()
