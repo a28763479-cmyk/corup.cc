@@ -3355,7 +3355,7 @@ end
 task.wait()
 
 instbullet:OnChanged(function()
-    Settings.InstantBullet = Toggles.gm_instant.Value
+    Settings.InstantBullet = instbullet.Value
     installProjectileHook()
     ensureProjectileHookRetryLoop()
     hookProjectileHandlersFromConnections()
@@ -3363,7 +3363,7 @@ instbullet:OnChanged(function()
 end)
 
 hitmanb:OnChanged(function()
-    Settings.HitmanBriefcaseEnabled = Toggles.gm_hitman_briefcase.Value
+    Settings.HitmanBriefcaseEnabled = hitmanb.Value
     syncHitmanWallbangState(shouldEnableHitmanWallbang())
     if not Settings.HitmanBriefcaseEnabled and type(hitmanClearProjectiles) == "function" then
         hitmanClearProjectiles()
@@ -3371,7 +3371,7 @@ hitmanb:OnChanged(function()
 end)
 
 instantr:OnChanged(function()
-    Settings.InstantReload = Toggles.gm_instant_reload.Value
+    Settings.InstantReload = instantr.Value
     if Settings.InstantReload then
         task.spawn(handleInstantReloadFromSource)
     end
@@ -3379,67 +3379,67 @@ end)
 
 
 modrecoil:OnChanged(function()
-    Settings.ModRecoil = Toggles.gm_mod_recoil.Value
+    Settings.ModRecoil = modrecoil.Value
     onConfigChanged()
 end)
 
 recoilam:OnChanged(function()
-    Settings.RecoilAmount = Options.gm_recoil_amount.Value
+    Settings.RecoilAmount = recoilam.Value
     onConfigChanged()
 end)
 
 modspread:OnChanged(function()
-    Settings.ModSpread = Toggles.gm_mod_spread.Value
+    Settings.ModSpread = modspread.Value
     onConfigChanged()
 end)
 
 spreadam:OnChanged(function()
-    Settings.SpreadAmount = Options.gm_spread_amount.Value
+    Settings.SpreadAmount = spreadam.Value
     onConfigChanged()
 end)
 
 equipsp:OnChanged(function()
-    Settings.ModEquip = Toggles.gm_mod_equip.Value
+    Settings.ModEquip = equipsp.Value
     onConfigChanged()
 end)
 
 equipmu:OnChanged(function()
-    Settings.EquipSpeed = Options.gm_equip_speed.Value
+    Settings.EquipSpeed = equipmu.Value
     onConfigChanged()
 end)
 
 aimsp:OnChanged(function()
-    Settings.ModAim = Toggles.gm_mod_aim.Value
+    Settings.ModAim = aimsp.Value
     onConfigChanged()
 end)
 
 aimmu:OnChanged(function()
-    Settings.AimSpeed = Options.gm_aim_speed.Value
+    Settings.AimSpeed = aimmu.Value
     onConfigChanged()
 end)
 
 infrange:OnChanged(function()
-    Settings.InfiniteRange = Toggles.gm_infinite_range.Value
+    Settings.InfiniteRange = infrange.Value
     onConfigChanged()
 end)
 
 noslow:OnChanged(function()
-    Settings.NoSlowdown = Toggles.gm_no_slowdown.Value
+    Settings.NoSlowdown = noslow.Value
     onConfigChanged()
 end)
 
 instcharge:OnChanged(function()
-    Settings.InstantCharge = Toggles.gm_instant_charge.Value
+    Settings.InstantCharge = instcharge.Value
     onConfigChanged()
 end)
 
 rapidfire:OnChanged(function()
-    Settings.RapidFire = Toggles.gm_rapid_fire.Value
+    Settings.RapidFire = rapidfire.Value
     onConfigChanged()
 end)
 
 SelfTracerToggle:OnChanged(function()
-    Settings.TracersSelf = Toggles.gm_tracers_self.Value
+    Settings.TracersSelf = SelfTracerToggle.Value
     if Settings.TracersSelf or Settings.TracersOthers then
         installVisualizeTracerHook()
         installLocalShootTracerHook()
@@ -3447,7 +3447,7 @@ SelfTracerToggle:OnChanged(function()
 end)
 
 OthersTracerToggle:OnChanged(function()
-    Settings.TracersOthers = Toggles.gm_tracers_others.Value
+    Settings.TracersOthers = OthersTracerToggle.Value
     if Settings.TracersSelf or Settings.TracersOthers then
         installVisualizeTracerHook()
         installLocalShootTracerHook()
@@ -3455,11 +3455,11 @@ OthersTracerToggle:OnChanged(function()
 end)
 
 selfcolor:OnChanged(function()
-    Settings.TracerSelfColor = Options.gm_tracer_self_color.Value
+    Settings.TracerSelfColor = selfcolor.Value
 end)
 
 otherscolor:OnChanged(function()
-    Settings.TracerOthersColor = Options.gm_tracer_others_color.Value
+    Settings.TracerOthersColor = otherscolor.Value
 end)
 
 if Settings.InstantReload then
