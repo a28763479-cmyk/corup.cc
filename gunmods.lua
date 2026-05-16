@@ -3343,9 +3343,9 @@ local noslow = GunModsGroup:AddToggle("gm_no_slowdown", { Text = "No Slowdown", 
 local instcharge = GunModsGroup:AddToggle("gm_instant_charge", { Text = "Instant Charge", Default = Settings.InstantCharge })
 local rapidfire = GunModsGroup:AddToggle("gm_rapid_fire", { Text = "Rapid Fire", Default = Settings.RapidFire })
 SelfTracerToggle = GunModsGroup:AddToggle("gm_tracers_self", { Text = "LocalPlayer Tracers", Default = Settings.TracersSelf })
-SelfTracerToggle:AddColorPicker("gm_tracer_self_color", { Default = Settings.TracerSelfColor, Title = "My Tracer Color" })
+local selfcolor = SelfTracerToggle:AddColorPicker("gm_tracer_self_color", { Default = Settings.TracerSelfColor, Title = "My Tracer Color" })
 OthersTracerToggle = GunModsGroup:AddToggle("gm_tracers_others", { Text = "Players Tracers", Default = Settings.TracersOthers })
-OthersTracerToggle:AddColorPicker("gm_tracer_others_color", { Default = Settings.TracerOthersColor, Title = "Others Tracer Color" })
+local otherscolor = OthersTracerToggle:AddColorPicker("gm_tracer_others_color", { Default = Settings.TracerOthersColor, Title = "Others Tracer Color" })
 
 local function onConfigChanged()
     refreshToolConfigs()
@@ -3454,11 +3454,11 @@ OthersTracerToggle:OnChanged(function()
     end
 end)
 
-Options.gm_tracer_self_color:OnChanged(function()
+selfcolor:OnChanged(function()
     Settings.TracerSelfColor = Options.gm_tracer_self_color.Value
 end)
 
-Options.gm_tracer_others_color:OnChanged(function()
+otherscolor:OnChanged(function()
     Settings.TracerOthersColor = Options.gm_tracer_others_color.Value
 end)
 
