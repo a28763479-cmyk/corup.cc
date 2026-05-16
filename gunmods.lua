@@ -3528,9 +3528,6 @@ Menu = Tabs["UI Settings"]:AddLeftGroupbox("Menu")
 Menu:AddButton("Unload", function()
     Library:Unload()
 end)
-Menu:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "End", NoUI = true, Text = "Menu keybind" })
-
-Library.ToggleKeybind = Options.MenuKeybind
 
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)
